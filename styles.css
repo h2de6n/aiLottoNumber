@@ -15,6 +15,10 @@ body {
     text-align: center;
 }
 
+.toggle-button {
+    font-size: 16px;
+}
+
 h1 {
     text-align: center;
     color: #333;
