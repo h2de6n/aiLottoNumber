@@ -1,83 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>로또번호 생성 사이트트</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f0f0f0;
-    }
-
-    .container {
-        max-width: 800px;
-        margin: 20px auto;
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    h1 {
-        text-align: center;
-        color: #333;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-    }
-
-    th, td {
-        padding: 10px;
-        text-align: center;
-        border-bottom: 1px solid #ddd;
-        width: 30px; /* 숫자의 너비를 고정값으로 설정 */
-    }
-
-    th {
-        background-color: #f2f2f2;
-    }
-
-    tr:nth-child(even) {
-        background-color: #f9f9f9;
-    }
-
-    .toggle-button {
-        display: inline-block;
-        margin-right: 10px;
-        padding: 10px 20px;
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
-
-    .toggle-button:hover {
-        background-color: #45a049;
-    }
-
-    .statistics-table-container {
-        display: none;
-    }
-
-    .show {
-        display: block;
-    }
-</style>
-</head>
-<body>
-<div class="container">
-    <h1>AI를 활용한 2023 ~ 2024년 로또번호 통계</h1>
-    <button class="toggle-button" onclick="toggleTable()">통계 표 보이기</button>
-    <button class="toggle-button" onclick="generateLottoNumbers()">로또 번호 생성</button>
-    <div class="statistics-table-container" id="statistics-table-container">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>로또번호 생성 사이트</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>AI를 활용한 2023 ~ 2024년 로또번호 통계</h1>
+      <button class="toggle-button" onclick="toggleTable()">
+        통계 표 보이기
+      </button>
+      <button class="toggle-button" onclick="generateLottoNumbers()">
+        로또 번호 생성
+      </button>
+      <button class="toggle-button" id="toggle-lotto-numbers" style="display: none;" onclick="toggleLottoNumbersTable()">
+        로또 번호표 숨기기
+    </button>
+      <div class="statistics-table-container" id="statistics-table-container">
         <table id="statistics-table">
             <tr>
                 <th>숫자</th>
@@ -264,87 +205,17 @@
             <td>13</td>
         </tr>
         </table>
-    </div>
-    <div id="lotto-numbers-container" style="display: none;">
+        </table>
+      </div>
+      <div id="lotto-numbers-container" style="display: none">
         <h2>로또 번호 생성 결과</h2>
         <table id="lotto-numbers-table">
-            <tr>
-                <th>로또 번호</th>
-            </tr>
+          <tr>
+            <th>로또 번호</th>
+          </tr>
         </table>
+      </div>
     </div>
-</div>
-<script>
-    function toggleTable() {
-    var container = document.getElementById("statistics-table-container");
-    container.classList.toggle("show");
-}
-
-function generateLottoNumbers() {
-    var numbers = [];
-    var table = document.getElementById("statistics-table");
-    var rows = table.getElementsByTagName("tr");
-
-    // 통계 표에서 나온 횟수가 9 이상인 숫자들을 numbers 배열에 추가
-    for (var i = 1; i < rows.length; i++) {
-        var cells = rows[i].getElementsByTagName("td");
-        var frequency = parseInt(cells[1].innerText);
-        if (frequency >= 9) {
-            numbers.push(parseInt(cells[0].innerText));
-        }
-    }
-
-    // 중복 제거
-    var uniqueNumbers = Array.from(new Set(numbers));
-
-    // 숫자 정렬
-    uniqueNumbers.sort(function(a, b) {
-        return a - b;
-    });
-
-    // numbers 배열에서 무작위로 6개의 숫자를 5번 뽑아서 표에 추가
-    var lottoNumbersTable = document.getElementById("lotto-numbers-table");
-    lottoNumbersTable.innerHTML = "<tr><th>로또 번호</th></tr>";
-    for (var j = 0; j < 5; j++) {
-        var lottoNumbers = [];
-        for (var k = 0; k < 6; k++) {
-            // 중복이 없는 숫자를 무작위로 뽑기
-            var randomIndex = Math.floor(Math.random() * uniqueNumbers.length);
-            lottoNumbers.push(uniqueNumbers[randomIndex]);
-            // 뽑은 숫자는 uniqueNumbers 배열에서 제거하여 중복 뽑히지 않도록 함
-            uniqueNumbers.splice(randomIndex, 1);
-        }
-        // 뽑은 숫자들을 오름차순 정렬하여 표에 추가
-        lottoNumbers.sort(function(a, b) {
-            return a - b;
-        });
-        var row = document.createElement("tr");
-        var cell = document.createElement("td");
-        cell.textContent = lottoNumbers.join(", ");
-        row.appendChild(cell);
-        lottoNumbersTable.appendChild(row);
-    }
-
-    // 결과를 보여주는 컨테이너 표시
-    var lottoNumbersContainer = document.getElementById("lotto-numbers-container");
-    lottoNumbersContainer.style.display = "block";
-}
-
-// "회"를 숫자 뒤에 붙이는 함수
-function addSuffixToNumbers() {
-    var table = document.getElementById("statistics-table");
-    var rows = table.getElementsByTagName("tr");
-    for (var i = 1; i < rows.length; i++) {
-        var cells = rows[i].getElementsByTagName("td");
-        var frequency = cells[1].innerHTML;
-        cells[1].innerHTML = frequency + "회";
-    }
-}
-
-// 페이지가 로드될 때 함수 실행
-window.onload = function() {
-    addSuffixToNumbers();
-};
-</script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
