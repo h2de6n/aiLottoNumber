@@ -1,0 +1,73 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    width: 30px; /* 숫자의 너비를 고정값으로 설정 */
+}
+
+th {
+    background-color: #f2f2f2;
+    font-size: 18px; /* 글꼴 크기를 키웁니다. */
+    font-weight: bold; /* 굵은 글꼴로 설정합니다. */
+}
+
+td {
+    width: 30px; /* 숫자의 너비를 고정값으로 설정 */
+    font-size: 16px; /* 글꼴 크기를 키웁니다. */
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.toggle-button {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.toggle-button:hover {
+    background-color: #45a049;
+}
+
+.statistics-table-container {
+    display: none;
+}
+
+.show {
+    display: block;
+}
