@@ -18,7 +18,7 @@ function generateLottoNumbers() {
     for (var i = 1; i < rows.length; i++) {
         var cells = rows[i].getElementsByTagName("td");
         var frequency = parseInt(cells[1].innerText);
-        if (frequency >= 12) {
+        if (frequency >= 10) {
             numbers.push(parseInt(cells[0].innerText));
         }
     }
@@ -36,12 +36,14 @@ function generateLottoNumbers() {
     lottoNumbersTable.innerHTML = "<tr><th>로또 번호</th></tr>";
     for (var j = 0; j < 5; j++) {
         var lottoNumbers = [];
-        for (var k = 0; k < 6; k++) {
+        while (lottoNumbers.length < 6) {
             // 중복이 없는 숫자를 무작위로 뽑기
             var randomIndex = Math.floor(Math.random() * uniqueNumbers.length);
-            lottoNumbers.push(uniqueNumbers[randomIndex]);
-            // 뽑은 숫자는 uniqueNumbers 배열에서 제거하여 중복 뽑히지 않도록 함
-            uniqueNumbers.splice(randomIndex, 1);
+            var selectedNumber = uniqueNumbers[randomIndex];
+            // 중복되지 않은 숫자인 경우에만 추가
+            if (!lottoNumbers.includes(selectedNumber)) {
+                lottoNumbers.push(selectedNumber);
+            }
         }
         // 뽑은 숫자들을 오름차순 정렬하여 표에 추가
         lottoNumbers.sort(function(a, b) {
