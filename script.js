@@ -14,11 +14,11 @@ function generateLottoNumbers() {
     var table = document.getElementById("statistics-table");
     var rows = table.getElementsByTagName("tr");
 
-    // 통계 표에서 나온 횟수가 9 이상인 숫자들을 numbers 배열에 추가
+    // 통계 표에서 나온 횟수가 10 이상인 숫자들을 numbers 배열에 추가
     for (var i = 1; i < rows.length; i++) {
         var cells = rows[i].getElementsByTagName("td");
         var frequency = parseInt(cells[1].innerText);
-        if (frequency >= 9) {
+        if (frequency >= 10) {
             numbers.push(parseInt(cells[0].innerText));
         }
     }
