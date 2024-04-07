@@ -18,7 +18,7 @@ function generateLottoNumbers() {
     for (var i = 1; i < rows.length; i++) {
         var cells = rows[i].getElementsByTagName("td");
         var frequency = parseInt(cells[1].innerText);
-        if (frequency >= 10) {
+        if (frequency >= 12) {
             numbers.push(parseInt(cells[0].innerText));
         }
     }
