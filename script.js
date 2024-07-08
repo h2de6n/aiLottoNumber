@@ -88,5 +88,16 @@ function addSuffixToNumbers() {
 
 // 페이지가 로드될 때 함수 실행
 window.onload = function() {
-    addSuffixToNumbers();
+    var toggleButtons = document.querySelectorAll(".toggle-button");
+    toggleButtons.forEach(function(button) {
+        button.addEventListener("click", function() {
+            if (button.id === "toggle-statistics-table") {
+                toggleTable(); // 통계 표 보이기/숨기기 버튼
+            } else if (button.id === "generate-lotto-numbers") {
+                generateLottoNumbers(); // 로또 번호 생성 버튼
+            } else if (button.id === "toggle-lotto-numbers") {
+                toggleLottoNumbersTable(); // 로또 번호표 숨기기/보이기 버튼
+            }
+        });
+    });
 };
